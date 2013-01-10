@@ -1,0 +1,23 @@
+{
+    "name": "swipeview",
+    "version": "0.0.1-jam.1",
+    "description": "Virtually infinite loop-able horizontal carousel for desktop and mobile browsers",
+    "homepage": "http://cubiq.org/swipeview",
+    "keywords": [
+        "mobile",
+        "swipe"
+    ],
+    "repositories": [
+        {
+            "type": "git", 
+            "url": "https://github.com/incuna/SwipeView.git"
+        }
+    ],
+    "jam": {
+        "main": "src/swipeview.js",
+        "include": ["src/swipeview.js"],
+        "shim": {
+            "exports": "SwipeView"
+        }
+    }
+}

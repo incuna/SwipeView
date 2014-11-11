@@ -66,7 +66,9 @@ var SwipeView = (function (window, document) {
 				numberOfPages: 3,
 				snapThreshold: null,
 				hastyPageFlip: false,
-				loop: true
+				loop: true,
+				noId: false,
+				idPrefix: 'swipeview'
 			};
 		
 			// User defined options
@@ -78,7 +80,13 @@ var SwipeView = (function (window, document) {
 			this.masterPages = [];
 			
 			div = document.createElement('div');
-			div.id = 'swipeview-slider';
+			div.className = 'swipeview-slider';
+			if (this.options.className) {
+				div.className += ' ' + this.options.className;
+			}
+			if (!this.options.noId) {
+				div.id = this.options.idPrefix + '-slider';
+			}
 			div.style.cssText = 'position:relative;top:0;height:100%;width:100%;' + cssVendor + 'transition-duration:0;' + cssVendor + 'transform:translateZ(0);' + cssVendor + 'transition-timing-function:ease-out';
 			this.wrapper.appendChild(div);
 			this.slider = div;
@@ -87,7 +95,10 @@ var SwipeView = (function (window, document) {
 
 			for (i=-1; i<2; i++) {
 				div = document.createElement('div');
-				div.id = 'swipeview-masterpage-' + (i+1);
+				div.className = 'swipeview-masterpage swipeview-masterpage-' + (i+1);
+				if (!this.options.noId) {
+					div.id = this.options.idPrefix + '-masterpage-' + (i+1);
+				}
 				div.style.cssText = cssVendor + 'transform:translateZ(0);position:absolute;top:0;height:100%;width:100%;left:' + i*100 + '%';
 				if (!div.dataset) div.dataset = {};
 				pageIndex = i == -1 ? this.options.numberOfPages - 1 : i;
